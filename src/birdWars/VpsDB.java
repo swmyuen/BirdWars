@@ -2,6 +2,11 @@ package birdWars;
 
 import java.util.ArrayList;
 
+/**
+ * Stubbed out VpsDB class which contains a stubbed out writeBatch method which 
+ * currently just prints out the event information.
+ *
+ */
 public class VpsDB {
 	/**
 	 * Stubbed-out method which is supposed to 'write to the database'. However
@@ -20,6 +25,9 @@ public class VpsDB {
 			return;
 		}
 	
+		// Printed the timestamp and message as well as the UUID for testing 
+		// purposes. It's easier to tell the difference between messages than 
+		// comparing UUIDs.
 		for(Event e : batch){
 			System.out.println("UUID: " + e.getID() + 
 					" timestamp: " + e.getTimestamp() + 
