@@ -70,7 +70,7 @@ public class GameLogic {
 		/* If the day has changed since the last event, this could happen 
 		 when an event batch starts on 23:59:55 and ends the next day 
 		 on 00:00:05. This should be written on a different table and the 
-		 EventBatch should be flushed 
+		 EventBatch should be flushed and a new EventBatch should be populated.
 		 
 		 else if the batch size reaches 20 then print and flush eventBatch
 		 
