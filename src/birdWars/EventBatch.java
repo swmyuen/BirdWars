@@ -12,8 +12,6 @@ import java.util.ArrayList;
  * interface that is actually used. For this reason I choose not to write this 
  * class to implement an arraylist because it would add a lot method stubs that 
  * would increase the code verbosity and make it difficult to read. 
- * 
- *
  */
 public class EventBatch {
 
