@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class EventBatch {
 
-	private static ArrayList<Event> batchQueue;
+	private ArrayList<Event> batchQueue;
 	private int size; 
 	
 	/**
@@ -43,6 +43,7 @@ public class EventBatch {
 	 */
 	protected void clearBatch(){
 		batchQueue.clear();
+		
 		size = 0;
 	}
 
@@ -51,7 +52,7 @@ public class EventBatch {
 	 * 
 	 * @return ArrayList<Event> represents the current EventBatch
 	 */
-	protected ArrayList<Event> getBatch(){
+	public ArrayList<Event> getBatch(){
 		return batchQueue; 
 	}
 	
@@ -60,7 +61,7 @@ public class EventBatch {
 	 * 
 	 * @return Current size of the EventBatch
 	 */
-	protected int getBatchSize(){
+	public int getBatchSize(){
 		return size;
 	}
 	

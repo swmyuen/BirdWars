@@ -13,7 +13,7 @@ import java.util.TimerTask;
 public class GameLogic {
 	
 	// Make these non-static assuming that this class will ever get invoked once
-	EventBatch eventBatch; 
+	private EventBatch eventBatch; 
 	private Timer timer = null;
 	// To keep track of the most recent event date stamp in the form of 
 	// YYYY-MM-DD
@@ -34,7 +34,7 @@ public class GameLogic {
 	 * Timer to handle the 10 second EventBatch lifetime. The flushEventBatch 
 	 * method is scheduled to be called every 10 seconds. 
 	 */
-	private void resetTimer() {
+	public void resetTimer() {
 		TimerTask timerTask = new TimerTask(){
 
 			// Every 10 seconds call the flushEventBatch method if the other 
@@ -80,6 +80,8 @@ public class GameLogic {
 			flushEventBatch(this.eventBatch);
 			
 			eventBatch.addToBatch(e);
+			
+			lastDateStamp = getDateStamp(new Date(e.getTimestamp()));
 		} else if(eventBatch.getBatchSize() == 19){
 			eventBatch.addToBatch(e);
 			
@@ -108,7 +110,7 @@ public class GameLogic {
 	 * 
 	 * @param e EventBatch to be flushed.
 	 */
-	private void flushEventBatch(EventBatch e){
+	public void flushEventBatch(EventBatch e){
 		// Write the event data 
 		VpsDB.writeBatch(e, getDateStamp(new Date()));
 		
@@ -118,6 +120,10 @@ public class GameLogic {
 		// Reset the 10 second timer. It is effectively spawning a new batch of 
 		// events so its 'life timer' should be reset.
 		resetTimer();
+	}
+	
+	public EventBatch getEventBatch(){
+		return this.eventBatch;
 	}
 
 }

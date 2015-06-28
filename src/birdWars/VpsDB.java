@@ -19,7 +19,7 @@ public class VpsDB {
 		if(batch.isEmpty()){
 			return;
 		}
-		
+	
 		for(Event e : batch){
 			System.out.println("UUID: " + e.getID() + 
 					" timestamp: " + e.getTimestamp() + 
