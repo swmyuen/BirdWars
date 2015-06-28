@@ -19,8 +19,14 @@ public class Tests {
 	public void setup(){
 		game = new GameLogic();
 	}
-
 	
+	/**
+	 * TEST CASE #1
+	 * Check to make sure that the 10 second EventBatch lifetime timer is 
+	 * working correctly.
+	 * 
+	 * @throws InterruptedException from the thread.sleep() 
+	 */
 	@Test
 	public void testTimerTimeout() throws InterruptedException{
 		Event e1 = new Event(genUuid(), getCurrentTime(), genMessage());
@@ -50,6 +56,11 @@ public class Tests {
 		assertEquals(0, game.getEventBatch().getBatchSize());
 	}
 	
+	/**
+	 * TEST CASE #2
+	 * Check to make sure that the EventBatch is flushed when 20 events are in
+	 * the EventBatch.
+	 */
 	@Test 
 	public void testTwentyLimit() {
 		// Reset the game
@@ -67,6 +78,15 @@ public class Tests {
 		assertEquals(0, game.getEventBatch().getBatchSize());
 	}
 	
+	/**
+	 * TEST CASE #3
+	 * Check to ensure that if the date changes before 20 events are in the 
+	 * EventBatch and before the 10 second life time is up, then the EventBatch
+	 * is flushed and the events from the previous day are written to the 
+	 * correct table. The events from the new day are now in the EventBatch.
+	 * 
+	 * @throws InterruptedException from the thread.sleep()
+	 */
 	@Test 
 	public void testDateChange() throws InterruptedException{
 		// Events with the current date 
